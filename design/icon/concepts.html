@@ -1,0 +1,46 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+html,body{margin:0;width:1024px;height:1024px;overflow:hidden;font-family:-apple-system,"SF Pro Rounded","SF Pro Display",sans-serif}
+.v{display:none;position:absolute;inset:0}
+body.v1 #v1,body.v2 #v2,body.v3 #v3{display:block}
+/* 1: routing - one file splits to three apps, one chosen */
+#v1{background:linear-gradient(160deg,#2b3140,#14161c)}
+/* 2: picker - stacked app rows, middle one chosen */
+#v2{background:linear-gradient(165deg,#5b8cff,#2747c9)}
+#v2.img{background:var(--bg) center/cover}
+#v2.img .r{background:rgba(255,255,255,.24);backdrop-filter:blur(18px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+#v2.img .r.on{background:#fff;box-shadow:0 24px 50px rgba(40,10,60,.35)}
+.r{position:absolute;left:192px;width:640px;height:150px;border-radius:44px;background:rgba(255,255,255,.22)}
+.r.on{background:#fff;box-shadow:0 24px 50px rgba(10,20,80,.45);left:162px;width:700px;height:180px}
+.dot{position:absolute;left:40px;top:40px;width:70px;height:70px;border-radius:20px;background:rgba(255,255,255,.4)}
+.on .dot{left:44px;top:44px;width:92px;height:92px;border-radius:26px;background:linear-gradient(180deg,#ffb347,#ff7a18)}
+.ln{position:absolute;left:140px;top:62px;height:26px;width:300px;border-radius:13px;background:rgba(255,255,255,.4)}
+.on .ln{left:170px;top:77px;width:340px;background:#c8d2e8}
+/* 3: extension -> app */
+#v3{background:linear-gradient(160deg,#f6f7f9,#dfe3ea)}
+.ext{position:absolute;left:178px;top:362px;width:300px;height:300px;border-radius:70px;background:#fff;box-shadow:0 20px 50px rgba(0,0,0,.18);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:108px;color:#2a2f3a;letter-spacing:-4px}
+.app{position:absolute;left:546px;top:362px;width:300px;height:300px;border-radius:70px;background:linear-gradient(180deg,#4aa3ff,#0a64e0);box-shadow:0 20px 50px rgba(10,60,160,.4)}
+</style></head><body>
+<div class="v" id="v1"><svg width="1024" height="1024" viewBox="0 0 1024 1024">
+ <g fill="none" stroke-linecap="round" stroke-width="44">
+  <path d="M300 512 C480 512 520 300 700 300" stroke="#59606f"/>
+  <path d="M300 512 C480 512 520 724 700 724" stroke="#59606f"/>
+  <path d="M300 512 L700 512" stroke="#3d8bff"/></g>
+ <circle cx="290" cy="512" r="96" fill="#fff"/>
+ <circle cx="730" cy="300" r="70" fill="#59606f"/>
+ <circle cx="730" cy="724" r="70" fill="#59606f"/>
+ <circle cx="740" cy="512" r="110" fill="#3d8bff"/>
+ <path d="M690 516 L725 551 L795 478" fill="none" stroke="#fff" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div>
+<div class="v" id="v2">
+ <div class="r" style="top:200px"><div class="dot"></div><div class="ln"></div></div>
+ <div class="r on" style="top:422px"><div class="dot"></div><div class="ln"></div>
+  <svg style="position:absolute;right:50px;top:52px" width="80" height="80" viewBox="0 0 80 80"><path d="M12 42 L32 62 L70 20" fill="none" stroke="#2747c9" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+ <div class="r" style="top:674px"><div class="dot"></div><div class="ln"></div></div>
+</div>
+<div class="v" id="v3"><div class="ext">.gif</div>
+ <svg style="position:absolute;left:474px;top:470px" width="76" height="84" viewBox="0 0 110 84"><path d="M8 42 H92 M62 12 L94 42 L62 72" fill="none" stroke="#2a2f3a" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ <div class="app"><svg width="300" height="300" viewBox="30 30 300 300"><path d="M110 184 L160 234 L254 134" fill="none" stroke="#fff" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+<script>const q=new URLSearchParams(location.search);document.body.className=q.get('v')||'v1';
+const bg=q.get('bg');if(bg){const e=document.getElementById('v2');e.classList.add('img');e.style.setProperty('--bg',`url(bg-${bg}.png)`)}</script>
+</body></html>
